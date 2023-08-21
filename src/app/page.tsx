@@ -16,6 +16,10 @@ const Home: React.FC = () => {
     redirect("/auth/login");
   }
 
+  if (status === "authenticated") {
+    redirect("/dashboard/products");
+  }
+
   return <div>Home</div>;
 };
 

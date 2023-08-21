@@ -6,3 +6,9 @@ export type Product = {
   sizes: string;
   colors: string;
 };
+
+export type Category = {
+  id: string;
+  name: string;
+  description: string;
+};

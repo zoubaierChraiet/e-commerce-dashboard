@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import Link from "next/link";
@@ -10,13 +12,14 @@ import {
   PhoneCall,
   MapPin,
 } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 interface IProps {}
 
 const NavBar: React.FC<IProps> = (props) => {
   return (
     <div className="pt-16 p-4 hidden md:block md:min-w-[250px] border-r-2 mt-5 mb-5">
-      <nav className="">
+      <nav className="flex flex-col h-full">
         <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
           Store
         </h2>
@@ -81,6 +84,18 @@ const NavBar: React.FC<IProps> = (props) => {
             <Button variant="ghost" className="w-full justify-start">
               <MapPin className="mr-2 h-4 w-4" />
               Locations
+            </Button>
+          </Link>
+        </div>
+        <div className="flex-grow" />
+        <div className="space-y-1">
+          <Link href="/dashboard/">
+            <Button
+              variant="ghost"
+              className="w-full justify-start"
+              onClick={() => signOut({ callbackUrl: "/" })}
+            >
+              Logout
             </Button>
           </Link>
         </div>

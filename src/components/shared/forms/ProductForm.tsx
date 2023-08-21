@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Label, Input, Button } from "@/components/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Product } from "@/lib/types";
+import { Category, Product } from "@/lib/types";
 import {
   Select,
   SelectContent,
@@ -21,6 +21,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import { db } from "../../../../firebase";
 
 interface Inputs extends Product {}
 
@@ -28,11 +36,21 @@ interface IProps {}
 
 const ProductForm: React.FC<IProps> = (props) => {
   const form = useForm<Inputs>();
+  const [categories, setCategories] = useState<any[]>([]);
   const {
     handleSubmit,
     formState: { errors },
     register,
   } = form;
+
+  useEffect(() => {
+    onSnapshot(
+      query(collection(db, "categories"), orderBy("timestamp", "desc")),
+      (snapshot) => {
+        setCategories(snapshot.docs.map((each) => each.data()));
+      }
+    );
+  }, []);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
@@ -63,12 +81,21 @@ const ProductForm: React.FC<IProps> = (props) => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Category</FormLabel>
-                <Input
-                  id="category"
-                  placeholder="Enter product category"
-                  onChange={field.onChange}
+                <Select
+                  onValueChange={field.onChange}
                   defaultValue={field.value}
-                />
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select product category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map((category: Category) => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormItem>
             )}
           />
@@ -79,6 +106,7 @@ const ProductForm: React.FC<IProps> = (props) => {
               <FormItem>
                 <FormLabel>Price</FormLabel>
                 <Input
+                  type="number"
                   id="category"
                   placeholder="Enter product price"
                   onChange={field.onChange}
@@ -87,7 +115,7 @@ const ProductForm: React.FC<IProps> = (props) => {
               </FormItem>
             )}
           />
-          <FormField
+          {/* <FormField
             name="colors"
             control={form.control}
             render={({ field }) => (
@@ -133,7 +161,7 @@ const ProductForm: React.FC<IProps> = (props) => {
                 </Select>
               </FormItem>
             )}
-          />
+          /> */}
         </div>
         <div className="flex justify-between mt-4">
           <Button type="submit">Submit</Button>
