@@ -16,7 +16,7 @@ const Products: React.FC<IProps> = (props) => {
       <ProductsTable columns={columns} data={[]} />
       <div className="mb-8" />
       <Button>
-        <Link href="/products/add">Add product</Link>
+        <Link href="products/add">Add product</Link>
       </Button>
     </div>
   );

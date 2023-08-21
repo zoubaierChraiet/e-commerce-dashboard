@@ -1,16 +1,13 @@
 import React from "react";
 
 import {
-  Button,
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui";
 import LoginForm from "@/components/shared/forms/LoginForm";
-import Link from "next/link";
 
 interface IProps {}
 
@@ -25,16 +22,6 @@ const Login: React.FC<IProps> = (props) => {
         <CardContent>
           <LoginForm />
         </CardContent>
-        <CardFooter className="flex justify-between">
-          <CardDescription>
-            {" "}
-            do not have account?{" "}
-            <Link href="/auth/signup" className="font-bold">
-              Sign up
-            </Link>{" "}
-          </CardDescription>
-          <Button>Submit</Button>
-        </CardFooter>
       </Card>
     </div>
   );

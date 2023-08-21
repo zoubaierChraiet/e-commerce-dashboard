@@ -21,7 +21,7 @@ const NavBar: React.FC<IProps> = (props) => {
           Store
         </h2>
         <div className="space-y-1">
-          <Link href="/products">
+          <Link href="dashboard/products">
             <Button variant="ghost" className="w-full justify-start">
               <Shirt className="mr-2 h-4 w-4" />
               Products
@@ -29,7 +29,7 @@ const NavBar: React.FC<IProps> = (props) => {
           </Link>
         </div>
         <div className="space-y-1">
-          <Link href="/categories">
+          <Link href="dashboard/categories">
             <Button variant="ghost" className="w-full justify-start">
               <LayoutList className="mr-2 h-4 w-4" />
               Categories
@@ -37,7 +37,7 @@ const NavBar: React.FC<IProps> = (props) => {
           </Link>
         </div>
         <div className="space-y-1">
-          <Link href="/sales">
+          <Link href="dashboard/sales">
             <Button variant="ghost" className="w-full justify-start">
               <Coins className="mr-2 h-4 w-4" />
               Sales
@@ -49,7 +49,7 @@ const NavBar: React.FC<IProps> = (props) => {
           Management
         </h2>
         <div className="space-y-1">
-          <Link href="/users">
+          <Link href="dashboard/users">
             <Button variant="ghost" className="w-full justify-start">
               <Coins className="mr-2 h-4 w-4" />
               Users
@@ -57,7 +57,7 @@ const NavBar: React.FC<IProps> = (props) => {
           </Link>
         </div>
         <div className="space-y-1">
-          <Link href="/orders">
+          <Link href="dashboard/orders">
             <Button variant="ghost" className="w-full justify-start">
               <Users2 className="mr-2 h-4 w-4" />
               Orders
@@ -69,7 +69,7 @@ const NavBar: React.FC<IProps> = (props) => {
           Contacts
         </h2>
         <div className="space-y-1">
-          <Link href="/contact">
+          <Link href="dashboard/contact">
             <Button variant="ghost" className="w-full justify-start">
               <PhoneCall className="mr-2 h-4 w-4" />
               Contact
@@ -77,7 +77,7 @@ const NavBar: React.FC<IProps> = (props) => {
           </Link>
         </div>
         <div className="space-y-1">
-          <Link href="/">
+          <Link href="dashboard/">
             <Button variant="ghost" className="w-full justify-start">
               <MapPin className="mr-2 h-4 w-4" />
               Locations

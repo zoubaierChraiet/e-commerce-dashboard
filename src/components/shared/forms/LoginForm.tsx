@@ -2,8 +2,10 @@
 
 import React from "react";
 
-import { Label, Input } from "@/components/ui";
+import { Label, Input, Button, CardDescription } from "@/components/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 type Inputs = {
   email: string;
@@ -44,6 +46,27 @@ const LoginForm: React.FC<IProps> = (props) => {
             {...register("password", { required: true })}
           />
         </div>
+      </div>
+      <div className="flex justify-between mt-4">
+        <CardDescription
+          className="cursor-pointer"
+          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+        >
+          {" "}
+          Sign with google{" "}
+        </CardDescription>
+      </div>
+      <div className="flex justify-between mt-4">
+        <CardDescription>
+          {" "}
+          do not have account?{" "}
+          <Link href="/auth/signup" className="font-bold">
+            Sign up
+          </Link>{" "}
+        </CardDescription>
+        <Button type="submit" onSubmit={handleSubmit(onSubmit)}>
+          Submit
+        </Button>
       </div>
     </form>
   );

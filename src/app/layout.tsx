@@ -1,8 +1,8 @@
-import NavBar from "@/components/layout/NavBar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import AuthProvider from "@/components/providers/authProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "flex")}>
-        <NavBar />
-        <div className="w-full h-full p-8 pl-16">{children}</div>
+      <body className={cn(inter.className, "flex p-8 pl-16")}>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
